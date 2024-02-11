@@ -2,11 +2,7 @@ import pytest
 from app.app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 
-# User model
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column(db.String(120), nullable=False)
+from app.app import User
 
 # Setup and teardown for each test function
 @pytest.fixture
