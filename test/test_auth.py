@@ -1,4 +1,5 @@
 import pytest
+from flask import session
 from app.app import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 
