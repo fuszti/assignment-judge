@@ -1,2 +1,4 @@
 .env
 .aider*
+.vscode/
+__pycache__/
