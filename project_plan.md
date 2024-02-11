@@ -21,8 +21,8 @@
 - [x] Set up version control with Git.
 - [x] Choose a lightweight database system (e.g., SQLite).
 4. Authentication
-- [ ] Implement the username and password authentication system.
-- [ ] Set up user session management.
+- [x] Implement the username and password authentication system.
+- [x] Set up user session management.
 5. File Upload and Task Creation
 - [ ] Implement the file upload system for Python scripts and requirements.txt.
 - [ ] Develop the task creation system that queues the uploaded scripts for execution.
