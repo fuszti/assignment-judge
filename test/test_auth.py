@@ -1,3 +1,5 @@
+from typing import Iterator
+from flask.testing import FlaskClient
 import pytest
 from app.app import User, app, db
 from flask import session
