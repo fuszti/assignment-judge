@@ -30,14 +30,13 @@ def register():
     """
     Register a new user.
 
-    This function is used to register a new user in the application. It receives a POST request with the username and 
-    password in the request form. The password is hashed using the generate_password_hash function from the 
-    werkzeug.security module. The user is then created with the provided username and hashed password, and added to 
-    the database session. Finally, the changes are committed to the database.
+    This function is used to register a new user in the application. It receives a POST request with the 
+    username and password in the request form. The password is hashed using the generate_password_hash 
+    function from the werkzeug.security module. The user is then created with the provided username and 
+    hashed password, and added to the database session. Finally, the changes are committed to the database.
 
     Returns:
         A JSON response with a success message and a status code of 200.
-
     """
     username = request.form["username"]
     password = request.form["password"]
@@ -57,9 +56,9 @@ def login():
         None
 
     Returns:
-        A JSON response containing a success message and status code 200 if the login is successful.
-        A JSON response containing an error message and status code 401 if the credentials are invalid.
-
+        A JSON response containing a success message and status code 200 if the login is 
+        successful. A JSON response containing an error message and status code 401 if the 
+        credentials are invalid.
     """
     username = request.form["username"]
     password = request.form["password"]
@@ -79,7 +78,6 @@ def logout():
 
     Returns:
         A JSON response with a success message and a status code of 200.
-
     """
     session.pop("user_id", None)  # Remove user_id from session
     return jsonify({"message": "Logout successful."}), 200
