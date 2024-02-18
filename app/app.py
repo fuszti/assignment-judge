@@ -11,8 +11,6 @@ app.config["SECRET_KEY"] = os.urandom(24)  # or a static secret key for developm
 db = SQLAlchemy(app)
 
 
-
-
 class User(db.Model):  # type: Type[db.Model]
     """
     User class represents a user in the application.
