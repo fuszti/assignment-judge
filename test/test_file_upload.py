@@ -20,6 +20,7 @@ def test_upload_creates_files() -> None:
 
         # Check that the files were created
         assert os.path.isfile(script_path)
+        assert requirements_path is not None
         assert os.path.isfile(requirements_path)
 
 

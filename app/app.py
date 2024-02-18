@@ -8,7 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 app.config["SECRET_KEY"] = os.urandom(24)  # or a static secret key for development
-db = SQLAlchemy(app)
+db = SQLAlchemy(app)  # type: ignore
 
 
 class User(db.Model):

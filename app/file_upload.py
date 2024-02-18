@@ -46,10 +46,10 @@ def upload_script(
         f.write(script_file.read())
 
     # Write the requirements file if it exists
+    result_requirements_path: Optional[str] = None
     if requirements_file:
         with open(requirements_path, "wb") as f:
             f.write(requirements_file.read())
-    else:
-        requirements_path = None  # No requirements file provided
+        result_requirements_path = requirements_path
 
-    return script_path, requirements_path
+    return script_path, result_requirements_path
