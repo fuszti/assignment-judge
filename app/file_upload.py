@@ -1,5 +1,4 @@
 import os
-import shutil
 import tempfile
 
 def upload_script(script_file, requirements_file, temp_dir):
@@ -12,9 +11,9 @@ def upload_script(script_file, requirements_file, temp_dir):
 
     :return: A tuple containing the paths of the uploaded script and requirements files.
 
-    This function creates a new temporary directory within the specified temp_dir and writes the script file to a file 
-    named "script.py" within the upload directory. If a requirements_file is provided, it is also written to a file 
-    named "requirements.txt" within the upload directory. If no requirements_file is provided, the requirements_path 
+    This function creates a new temporary directory within the specified temp_dir and writes the script file to a file
+    named "script.py" within the upload directory. If a requirements_file is provided, it is also written to a file
+    named "requirements.txt" within the upload directory. If no requirements_file is provided, the requirements_path
     in the returned tuple will be None.
 
     Example usage:
@@ -25,9 +24,10 @@ def upload_script(script_file, requirements_file, temp_dir):
         script_path, requirements_path = upload_script(script_file, requirements_file, temp_dir)
 
         # script_path will be "/path/to/temp/dir/upload_dir/script.py"
-        # requirements_path will be "/path/to/temp/dir/upload_dir/requirements.txt" (if requirements_file is provided)
+        # requirements_path will be "/path/to/temp/dir/upload_dir/requirements.txt"
+        # (if requirements_file is provided)
 
-    Note: This function uses the tempfile module to create a new temporary directory and the os module to join file 
+    Note: This function uses the tempfile module to create a new temporary directory and the os module to join file
     paths and check if files exist.
     """
     # Create a new temporary directory for this upload
