@@ -49,6 +49,9 @@ def test_upload_returns_file_paths():
         # Call the upload function
         script_path, requirements_path = upload_script(script_file, requirements_file, temp_dir)
 
+        # The upload_script function creates a new subdirectory in temp_dir
+        upload_dir = os.path.dirname(script_path)
+
         # Check that the returned paths are correct
-        assert script_path == os.path.join(temp_dir, "script.py")
-        assert requirements_path == os.path.join(temp_dir, "requirements.txt")
+        assert script_path == os.path.join(upload_dir, "script.py")
+        assert requirements_path == os.path.join(upload_dir, "requirements.txt")
