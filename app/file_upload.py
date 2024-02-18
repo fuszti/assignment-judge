@@ -1,6 +1,6 @@
-from typing import IO, Optional, Tuple
 import os
 import tempfile
+from typing import IO, Optional, Tuple
 
 
 def upload_script(

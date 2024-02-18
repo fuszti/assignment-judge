@@ -1,7 +1,7 @@
-from typing import IO, Optional, Tuple
 import io
 import os
 import tempfile
+
 from app.file_upload import upload_script
 
 
