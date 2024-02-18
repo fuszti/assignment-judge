@@ -12,12 +12,12 @@ def upload_script(script_file, requirements_file, temp_dir):
 
     # Write the script file
     with open(script_path, "wb") as f:
-        shutil.copyfileobj(script_file, f)
+        f.write(script_file.read())
 
     # Write the requirements file if it exists
     if requirements_file:
         with open(requirements_path, "wb") as f:
-            shutil.copyfileobj(requirements_file, f)
+            f.write(requirements_file.read())
     else:
         requirements_path = None  # No requirements file provided
 
