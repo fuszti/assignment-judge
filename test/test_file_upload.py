@@ -6,7 +6,7 @@ from app.file_upload import upload_script
 
 
 # Test that the upload function creates files in the temporary directory
-def test_upload_creates_files():
+def test_upload_creates_files() -> None:
     with tempfile.TemporaryDirectory() as temp_dir:
         script_content = b'print("Hello, world!")'
         requirements_content = b"pytest==6.2.5"
@@ -24,7 +24,7 @@ def test_upload_creates_files():
 
 
 # Test that the upload function handles None for requirements.txt
-def test_upload_handles_none_requirements():
+def test_upload_handles_none_requirements() -> None:
     with tempfile.TemporaryDirectory() as temp_dir:
         script_content = b'print("Hello, world!")'
 
@@ -40,7 +40,7 @@ def test_upload_handles_none_requirements():
 
 
 # Test that the upload function returns correct file paths
-def test_upload_returns_file_paths():
+def test_upload_returns_file_paths() -> None:
     with tempfile.TemporaryDirectory() as temp_dir:
         script_content = b'print("Hello, world!")'
         requirements_content = b"pytest==6.2.5"
@@ -60,7 +60,7 @@ def test_upload_returns_file_paths():
         assert requirements_path == os.path.join(upload_dir, "requirements.txt")
 
 
-def test_upload_handles_empty_script_file_with_none_requirements():
+def test_upload_handles_empty_script_file_with_none_requirements() -> None:
     with tempfile.TemporaryDirectory() as temp_dir:
         script_content = b""
 
