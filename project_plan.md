@@ -24,7 +24,8 @@
 - [x] Implement the username and password authentication system.
 - [x] Set up user session management.
 5. File Upload and Task Creation
-- [ ] Implement the file upload system for Python scripts and requirements.txt.
+- [x] Implement the file upload system for Python scripts and requirements.txt.
+- [ ] Create Gradio UI with authentication for the Python script and requirements.txt uploading
 - [ ] Develop the task creation system that queues the uploaded scripts for execution.
 6. Code Execution Environment
 - [ ] Set up a secure sandbox environment to run user-uploaded Python scripts.
