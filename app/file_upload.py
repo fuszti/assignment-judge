@@ -2,7 +2,7 @@ import os
 import tempfile
 
 
-def upload_script(script_file, requirements_file, temp_dir):
+def upload_script(script_file, requirements_file, temp_dir) -> None:
     """
     Uploads a script and an optional requirements file to a temporary directory.
 
