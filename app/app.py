@@ -3,12 +3,18 @@ from typing import Tuple
 
 from flask import Flask, jsonify, request, session
 from flask_sqlalchemy import SQLAlchemy
+from marshmallow import Schema, fields, ValidationError
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 app.config["SECRET_KEY"] = os.urandom(24)  # or a static secret key for development
 db = SQLAlchemy(app)  # type: ignore
+
+
+class UserSchema(Schema):
+    username = fields.Str(required=True)
+    password = fields.Str(required=True)
 
 
 class User(db.Model):
@@ -40,8 +46,14 @@ def register() -> Tuple[str, int]:
     Returns:
         A JSON response with a success message and a status code of 200.
     """
-    username = request.form["username"]
-    password = request.form["password"]
+    user_schema = UserSchema()
+    try:
+        user_data = user_schema.load(request.get_json())
+    except ValidationError as err:
+        return jsonify({"message": "Invalid data.", "errors": err.messages}), 400
+
+    username = user_data["username"]
+    password = user_data["password"]
     hashed_password = generate_password_hash(password)
     user = User(username=username, password_hash=hashed_password)
     db.session.add(user)
@@ -62,8 +74,14 @@ def login() -> Tuple[str, int]:
         successful. A JSON response containing an error message and status code 401 if the
         credentials are invalid.
     """
-    username = request.form["username"]
-    password = request.form["password"]
+    user_schema = UserSchema()
+    try:
+        user_data = user_schema.load(request.get_json())
+    except ValidationError as err:
+        return jsonify({"message": "Invalid data.", "errors": err.messages}), 400
+
+    username = user_data["username"]
+    password = user_data["password"]
     user = User.query.filter_by(username=username).first()
     if user and check_password_hash(user.password_hash, password):
         session["user_id"] = user.id  # Store user ID in session
