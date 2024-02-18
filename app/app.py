@@ -27,7 +27,7 @@ class User(db.Model):
 
 
 @app.route("/register", methods=["POST"])
-def register() -> tuple:
+def register() -> Tuple[str, int]:
     """
     Register a new user.
 
@@ -49,7 +49,7 @@ def register() -> tuple:
 
 
 @app.route("/login", methods=["POST"])
-def login() -> tuple:
+def login() -> Tuple[str, int]:
     """
     Login function for the Flask application.
 
@@ -71,7 +71,7 @@ def login() -> tuple:
 
 
 @app.route("/logout", methods=["POST"])
-def logout() -> tuple:
+def logout() -> Tuple[str, int]:
     """
     Logout function.
 
