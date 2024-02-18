@@ -1,7 +1,8 @@
-from flask import Flask, request, jsonify, session
-from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
 import os
+
+from flask import Flask, jsonify, request, session
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
@@ -30,9 +31,9 @@ def register():
     """
     Register a new user.
 
-    This function is used to register a new user in the application. It receives a POST request with the 
-    username and password in the request form. The password is hashed using the generate_password_hash 
-    function from the werkzeug.security module. The user is then created with the provided username and 
+    This function is used to register a new user in the application. It receives a POST request with the
+    username and password in the request form. The password is hashed using the generate_password_hash
+    function from the werkzeug.security module. The user is then created with the provided username and
     hashed password, and added to the database session. Finally, the changes are committed to the database.
 
     Returns:
@@ -56,8 +57,8 @@ def login():
         None
 
     Returns:
-        A JSON response containing a success message and status code 200 if the login is 
-        successful. A JSON response containing an error message and status code 401 if the 
+        A JSON response containing a success message and status code 200 if the login is
+        successful. A JSON response containing an error message and status code 401 if the
         credentials are invalid.
     """
     username = request.form["username"]

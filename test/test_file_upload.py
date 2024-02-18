@@ -1,8 +1,9 @@
 import io
 import os
 import tempfile
-import pytest
+
 from app.file_upload import upload_script
+
 
 # Test that the upload function creates files in the temporary directory
 def test_upload_creates_files():
@@ -21,6 +22,7 @@ def test_upload_creates_files():
         assert os.path.isfile(script_path)
         assert os.path.isfile(requirements_path)
 
+
 # Test that the upload function handles None for requirements.txt
 def test_upload_handles_none_requirements():
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -35,6 +37,7 @@ def test_upload_handles_none_requirements():
         # Check that the script file was created and requirements.txt was not
         assert os.path.isfile(script_path)
         assert not os.path.isfile(os.path.join(temp_dir, "requirements.txt"))
+
 
 # Test that the upload function returns correct file paths
 def test_upload_returns_file_paths():
@@ -56,9 +59,10 @@ def test_upload_returns_file_paths():
         assert script_path == os.path.join(upload_dir, "script.py")
         assert requirements_path == os.path.join(upload_dir, "requirements.txt")
 
+
 def test_upload_handles_empty_script_file_with_none_requirements():
     with tempfile.TemporaryDirectory() as temp_dir:
-        script_content = b''
+        script_content = b""
 
         # Mock file-like object
         script_file = io.BytesIO(script_content)

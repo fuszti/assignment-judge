@@ -17,7 +17,7 @@ The resource requirement does not allow that to run many tasks parallel, so it s
 
 The input files:
 text files. It will be feed into the python scripts, that the users upload. The users may upload a requirements.txt that is used in the python env where their script will be run.
-The output of their script should be json file. 
+The output of their script should be json file.
 And the evaluator would run get the input and output json files as parameters to calculate the score.
 
 # Users
@@ -96,7 +96,7 @@ In the second time unit, vehicle 1 continues along the edge (FORWARD), and vehic
 This example demonstrates how the commands can be distributed and scheduled among vehicles over time to efficiently execute the transportation tasks. The JSON format makes the data easily interpretable and processable, allowing developers and systems to integrate algorithms and simulations smoothly. This format facilitates the visualization of vehicle movements and the package delivery process, as well as performance evaluation and optimization.
 
 # Scoring
-Each output json file contains steps. The evaluator has to check the commands list that solve the original pick up and delivery task that is in the input file or not. 
+Each output json file contains steps. The evaluator has to check the commands list that solve the original pick up and delivery task that is in the input file or not.
 - So the packages are picked up and droped at the required node.
 - The packages are picked up after and only after its release time.
 - That also good, if during the transport the package is dropped on a different node, but later another vehicle picked up and continue the transport.
