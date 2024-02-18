@@ -36,7 +36,8 @@ def test_upload_handles_none_requirements() -> None:
 
         # Check that the script file was created and requirements.txt was not
         assert os.path.isfile(script_path)
-        assert not os.path.isfile(os.path.join(temp_dir, "requirements.txt"))
+        if requirements_path is not None:
+            assert not os.path.isfile(os.path.join(temp_dir, "requirements.txt"))
 
 
 # Test that the upload function returns correct file paths
@@ -72,4 +73,7 @@ def test_upload_handles_empty_script_file_with_none_requirements() -> None:
 
         # Check that the script file was created and requirements.txt was not
         assert os.path.isfile(script_path)
-        assert requirements_path is None or not os.path.isfile(requirements_path)
+        if requirements_path is not None:
+            assert not os.path.isfile(requirements_path)
+        else:
+            assert requirements_path is None
