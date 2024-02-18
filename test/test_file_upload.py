@@ -32,7 +32,7 @@ def test_upload_handles_none_requirements() -> None:
         script_file = io.BytesIO(script_content)
 
         # Call the upload function
-        script_path, _ = upload_script(script_file, None, temp_dir)
+        script_path, requirements_path = upload_script(script_file, None, temp_dir)
 
         # Check that the script file was created and requirements.txt was not
         assert os.path.isfile(script_path)
