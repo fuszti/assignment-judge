@@ -26,7 +26,7 @@ jobs:
     - name: Lint with pylint
       run: |
         pip install pylint
-        pylint your_package_name
+        pylint app
     
     - name: Test with pytest
       run: |
@@ -41,4 +41,4 @@ jobs:
     - name: Measure complexity
       run: |
         pip install radon
-        radon cc your_package_name -a
+        radon cc app -a
