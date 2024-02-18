@@ -55,3 +55,17 @@ def test_upload_returns_file_paths():
         # Check that the returned paths are correct
         assert script_path == os.path.join(upload_dir, "script.py")
         assert requirements_path == os.path.join(upload_dir, "requirements.txt")
+
+def test_upload_handles_empty_script_file_with_none_requirements():
+    with tempfile.TemporaryDirectory() as temp_dir:
+        script_content = b''
+
+        # Mock file-like object
+        script_file = io.BytesIO(script_content)
+
+        # Call the upload function
+        script_path, requirements_path = upload_script(script_file, None, temp_dir)
+
+        # Check that the script file was created and requirements.txt was not
+        assert os.path.isfile(script_path)
+        assert requirements_path is None or not os.path.isfile(requirements_path)
