@@ -30,10 +30,10 @@ def test_upload_handles_none_requirements():
         script_file = io.BytesIO(script_content)
 
         # Call the upload function
-        upload_script(script_file, None, temp_dir)
+        script_path, _ = upload_script(script_file, None, temp_dir)
 
         # Check that the script file was created and requirements.txt was not
-        assert os.path.isfile(os.path.join(temp_dir, "script.py"))
+        assert os.path.isfile(script_path)
         assert not os.path.isfile(os.path.join(temp_dir, "requirements.txt"))
 
 # Test that the upload function returns correct file paths
