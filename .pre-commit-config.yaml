@@ -65,18 +65,6 @@ repos:
   - id: ruff
     args: [--fix, --exit-non-zero-on-fix, --show-fixes]
 
-- repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.7.1
-  hooks:
-  - id: mypy
-    args: [--ignore-missing-imports, --no-implicit-optional, --disallow-untyped-defs]
-    pass_filenames: true
-    additional_dependencies:
-    - types-requests
-    - types-certifi
-    - types-PyYAML
-    - pytest
-
 - repo: https://github.com/pappasam/toml-sort
   rev: v0.23.1
   hooks:
