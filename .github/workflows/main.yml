@@ -36,7 +36,7 @@ jobs:
     - name: Test with coverage
       run: |
         pip install pytest-cov
-        pytest --cov=your_package_name tests/
+        pytest --cov=your_package_name test/
 
     - name: Measure complexity
       run: |-
