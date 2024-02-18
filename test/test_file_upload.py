@@ -15,11 +15,11 @@ def test_upload_creates_files():
         requirements_file = io.BytesIO(requirements_content)
 
         # Call the upload function
-        upload_script(script_file, requirements_file, temp_dir)
+        script_path, requirements_path = upload_script(script_file, requirements_file, temp_dir)
 
         # Check that the files were created
-        assert os.path.isfile(os.path.join(temp_dir, "script.py"))
-        assert os.path.isfile(os.path.join(temp_dir, "requirements.txt"))
+        assert os.path.isfile(script_path)
+        assert os.path.isfile(requirements_path)
 
 # Test that the upload function handles None for requirements.txt
 def test_upload_handles_none_requirements():
