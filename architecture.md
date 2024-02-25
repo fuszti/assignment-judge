@@ -406,10 +406,10 @@ def upload_script(script, requirements):
     if requirements is not None:
         with open(requirements_path, "wb") as f:
             f.write(requirements.read())
-    
+
     # Add the task to the queue
     add_task_to_queue(script_path, requirements_path)
-    
+
     return "Script uploaded and queued for execution."
 
 # Define Gradio interface
@@ -466,7 +466,7 @@ def process_task(script_path, requirements_path, test_cases_config):
         input_file = test_case['input']
         expected_output_file = test_case['expected_output']
         score = evaluate_script(output_path, input_file, expected_output_file)
-        
+
         # Update the database with the score for this test case
         # ...
 
@@ -474,15 +474,15 @@ def evaluate_script(user_output_path, input_file, expected_output_file):
     # Read the user's output
     with open(user_output_path, 'r') as user_output:
         user_data = json.load(user_output)
-    
+
     # Read the expected output
     with open(expected_output_file, 'r') as expected_output:
         expected_data = json.load(expected_output)
-    
+
     # Compare the outputs and calculate the score
     # This is a placeholder for the actual scoring logic
     score = compare_outputs(user_data, expected_data)
-    
+
     return score
 
 # Placeholder for the comparison logic
