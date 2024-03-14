@@ -13,6 +13,17 @@ class ProblemState:
         self._vehicles_went_on_edge = {}
         self._vehicles_pickup_tasks = {}
     
+    def __deepcopy__(self, memo):
+        # Create a new instance without calling __init__
+        new_instance = self.__class__.__new__(self.__class__)
+        memo[id(self)] = new_instance
+        for k, v in self.__dict__.items():
+            if k == "_graph":  # Don't deepcopy _graph
+                setattr(new_instance, k, v)
+            else:
+                setattr(new_instance, k, deepcopy(v, memo))
+        return new_instance
+
     @property
     def problem_info(self):
         return ProblemInfo(self._graph, self._vehicles_positions, self._tasks_info)
@@ -62,8 +73,11 @@ class ProblemState:
                 if to_node not in self._graph[from_node]:
                     raise ValueError(f"Node {to_node} is not reachable from node {from_node}")
                 edge_length = self._graph[from_node][to_node]['weight']
-                new_state._vehicles_positions[vehicle_id] = (from_node, to_node)
-                new_state._vehicles_went_on_edge[vehicle_id] = self._current_time
+                if edge_length > 1:
+                    new_state._vehicles_positions[vehicle_id] = (from_node, to_node)
+                    new_state._vehicles_went_on_edge[vehicle_id] = self._current_time
+                else:
+                    new_state._vehicles_positions[vehicle_id] = (to_node, to_node)
             elif command == Command.IDLE:
                 pass
             else:
@@ -98,6 +112,8 @@ class Simulator:
         return self.invalid_command_happened
     
     def get_score(self) -> float:
+        if self.invalid_command_happened:
+            return float('inf')
         if self.score == -1:
             return float('inf')
         return float(self.score)

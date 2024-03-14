@@ -1,10 +1,26 @@
 import argparse
+import glob
 import json
+import os
+from tqdm import tqdm
 
 from problem.problem_info import read_problem_info
 from problem.simulator import ProblemState, Simulator
 from problem.vehicle_fleet_plan import VehicleFleetPlan
 
+def evaluate_dataset(input_folder, output_folder):
+    input_files = sorted(glob.glob(f"{input_folder}/*.txt"))
+    full_score = 0.0
+    for input_file in tqdm(input_files, desc="Evaluating"):
+        output_file = f"{output_folder}/{os.path.basename(input_file).replace('input', 'output')}"
+        output_file = output_file.replace('.txt', '.json')
+        with open(output_file, 'r') as file:
+            output_json = json.load(file)
+        try:
+            full_score += evaluate(input_file, output_json)
+        except Exception as e:
+            print(f"An error occurred while evaluating the output file {output_file}: {e}")
+    return full_score
 
 
 def evaluate(input_path, output_json):
@@ -15,23 +31,3 @@ def evaluate(input_path, output_json):
     for command_dict in fleet_plan:
         simulator.apply(command_dict)
     return simulator.get_score()
-
-
-if __name__ == "__main__":
-    # argparse the input text file and the output json file and call evaluate
-    parser = argparse.ArgumentParser(description='Evaluate the output json file')
-    parser.add_argument('input', type=str, help='The input text file')
-    parser.add_argument('output', type=str, help='The output json file')
-    args = parser.parse_args()
-    input_path = args.input
-    output_path = args.output
-
-    # Read the output json file
-    with open(output_path, 'r') as file:
-        output_json = json.load(file)
-
-    # Evaluate the output json file
-    score = evaluate(input_path, output_json)
-
-    # Print the score
-    print(f"The score is: {score}")
